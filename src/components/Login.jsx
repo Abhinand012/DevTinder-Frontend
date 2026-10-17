@@ -9,8 +9,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("abhinand@gmail.com");
-  const [password, setPassword] = useState("Abhinand@012");
+  const [email, setEmail] = useState("mbappe@gmail.com");
+  const [password, setPassword] = useState("Mbappe@012");
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -26,8 +27,8 @@ const Login = () => {
         dispatch(addUser(res.data));
         navigate("/");
       }
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      setError(err.response?.data || "Something went wrong");
     }
   };
 
@@ -55,7 +56,9 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
+        {error && (
+          <p className="text-red-600 bg-gray-800 rounded-lg p-2">{error}</p>
+        )}
         <button className="btn btn-neutral mt-4" onClick={handleLogin}>
           Login
         </button>
