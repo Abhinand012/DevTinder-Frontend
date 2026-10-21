@@ -29,10 +29,16 @@ const Feed = () => {
     }
     fetchFeed();
   }, []);
+  if (!feed || feed.length === 0) {
+    return (
+      <div className="text-center text-2xl text-gray-300">
+        nothing to show on feed
+      </div>
+    );
+  }
   return (
-    user &&
     feed && (
-      <div className="flex justify-center items-center mt-4">
+      <div className="flex justify-center items-center">
         <UserCard user={feed[0]} />
       </div>
     )

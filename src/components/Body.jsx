@@ -3,22 +3,26 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
 
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((store) => store.user);
 
   const fetchUser = async () => {
     try {
-      if (user) {
+      const hasToken = document.cookie
+        .split("; ")
+        .some((cookie) => cookie.startsWith("token="));
+
+      if (hasToken) {
         const res = await axios.get(BASE_URL + "/profile/view", {
           withCredentials: true,
         });
-        dispatch(addUser(res.data));
+        dispatch(addUser(res?.data));
+        navigate("/");
       } else {
         navigate("/login");
       }
@@ -36,7 +40,7 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col h-screen justify-between">
       <Navbar />
       <Outlet />
       <Footer />

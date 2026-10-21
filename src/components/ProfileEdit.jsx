@@ -99,7 +99,7 @@ const ProfileEdit = ({ user }) => {
       {showToast && (
         <div className="toast toast-top toast-center">
           <div className="alert alert-success">
-            <span>Message sent successfully.</span>
+            <span>Updated successfully.</span>
           </div>
         </div>
       )}

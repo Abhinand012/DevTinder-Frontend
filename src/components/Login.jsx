@@ -33,8 +33,8 @@ const Login = () => {
   };
 
   return (
-    <div className="h-100% flex justify-center items-center">
-      <fieldset className="mt-30 fieldset bg-primary glass border-base-300 rounded-box w-xs border p-4">
+    <div className="flex justify-center items-center">
+      <fieldset className=" fieldset bg-primary glass border-base-300 rounded-box w-xs border p-4">
         <legend className="fieldset-legend text-white font-bold text-xl ml-28">
           Login
         </legend>
