@@ -21,28 +21,32 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-primary shadow-sm">
+    <div className="navbar sticky top-0 z-50 border-b border-base-content/10 bg-base-100/80 px-4 backdrop-blur-lg sm:px-6">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link
+          to="/"
+          className="btn btn-ghost gap-2 px-2 text-xl font-bold tracking-tight"
+        >
+          <span className="text-primary">&lt;/&gt;</span>
           DevTinder
         </Link>
       </div>
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         {user && (
           <>
-            <p className="my-auto mx-4">
-              Welcome{" "}
-              <label className="text-secondary">{user?.firstName}</label>
+            <p className="hidden text-sm text-base-content/70 sm:block">
+              Welcome,{" "}
+              <span className="font-medium text-primary">{user?.firstName}</span>
             </p>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost btn-circle avatar ring-2 ring-primary/30 ring-offset-2 ring-offset-base-100"
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
+                    alt={`${user?.firstName}'s profile`}
                     src={
                       photoUrl
                         ? photoUrl
@@ -53,25 +57,21 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={-1}
-                className="border menu menu-sm dropdown-content bg-primary rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu dropdown-content menu-sm z-50 mt-3 w-52 rounded-box border border-base-content/10 bg-base-200 p-2 shadow-xl"
               >
                 <li>
-                  <Link to="/profile" className="justify-between">
-                    Profile
-                  </Link>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to="/connections" className="justify-between">
-                    connections
-                  </Link>
+                  <Link to="/connections">Connections</Link>
                 </li>
                 <li>
-                  <Link to="/requests" className="justify-between">
-                    requests
-                  </Link>
+                  <Link to="/requests">Requests</Link>
                 </li>
-                <li>
-                  <a onClick={handleLogout}>Logout</a>
+                <li className="border-t border-base-content/10 pt-1">
+                  <a onClick={handleLogout} className="text-error">
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>

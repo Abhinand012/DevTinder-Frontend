@@ -1,2 +1,47 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: dark --default;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility page-container {
+  @apply flex-1 flex flex-col items-center px-4 py-8 sm:px-6 overflow-y-auto;
+}
+
+@utility page-title {
+  @apply text-2xl sm:text-3xl font-semibold tracking-tight text-base-content mb-2;
+}
+
+@utility page-subtitle {
+  @apply text-sm text-base-content/60 mb-8 text-center max-w-md;
+}
+
+@utility glass-card {
+  @apply bg-base-200/70 backdrop-blur-md border border-base-content/10 shadow-xl rounded-2xl;
+}
+
+@utility empty-state {
+  @apply glass-card flex flex-col items-center justify-center gap-4 p-10 sm:p-14 text-center max-w-md mx-auto mt-8;
+}

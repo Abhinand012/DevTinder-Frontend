@@ -40,9 +40,11 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-base-300 via-base-200 to-neutral">
       <Navbar />
-      <Outlet />
+      <main className="flex flex-1 flex-col">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

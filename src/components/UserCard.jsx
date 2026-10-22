@@ -18,29 +18,56 @@ const UserCard = ({ user }) => {
       console.log(error);
     }
   };
+
+  const defaultPhoto =
+    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
+
   return (
-    <div className="card bg-base-300 w-96 shadow-sm">
-      <figure>
-        <img className="aspect-5/4 w-full" src={photoUrl} alt="Shoes" />
+    <div className="card w-full max-w-sm overflow-hidden border border-base-content/10 bg-base-200/80 shadow-2xl backdrop-blur-sm">
+      <figure className="relative">
+        <img
+          className="aspect-[4/5] w-full object-cover"
+          src={photoUrl || defaultPhoto}
+          alt={`${firstName} ${lastName}`}
+        />
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-300/95 via-base-300/60 to-transparent px-5 pb-5 pt-16">
+          <h2 className="text-xl font-bold tracking-tight">
+            {firstName} {lastName}
+          </h2>
+          {(age || gender) && (
+            <div className="mt-1 flex items-center gap-2">
+              {age && (
+                <span className="badge badge-sm badge-primary badge-outline">
+                  {age} yrs
+                </span>
+              )}
+              {gender && gender !== "default" && (
+                <span className="badge badge-sm badge-ghost capitalize">
+                  {gender}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{firstName + " " + lastName}</h2>
-        <label className="inline">
-          {age} {gender}
-        </label>
-        <p className="h-10 overflow-y-scroll scrollbar-none">{about}</p>
-        <div className="card-actions justify-center gap-4 my-4">
+
+      <div className="card-body gap-4 p-5">
+        <p className="scrollbar-none h-20 overflow-y-auto text-sm leading-relaxed text-base-content/70">
+          {about || "No bio provided yet."}
+        </p>
+
+        <div className="card-actions justify-center gap-3">
           <button
-            className="btn btn-primary"
+            className="btn btn-outline btn-sm flex-1"
             onClick={() => hanldeSendRequest("ignored", _id)}
           >
-            ignore
+            Ignore
           </button>
           <button
-            className="btn btn-secondary"
+            className="btn btn-primary btn-sm flex-1"
             onClick={() => hanldeSendRequest("interested", _id)}
           >
-            send request
+            Send Request
           </button>
         </div>
       </div>

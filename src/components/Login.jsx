@@ -51,65 +51,82 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <fieldset className=" fieldset bg-primary glass border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend text-white font-bold text-xl ml-28">
-          {isLoginForm ? "Login" : "Sign Up"}
-        </legend>
-        {!isLoginForm && (
-          <>
-            <label className="label text-white">First Name</label>
-            <input
-              type="email"
-              className="input"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <label className="label text-white">Last Name</label>
-            <input
-              type="email"
-              className="input"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </>
-        )}
+    <div className="flex flex-1 items-center justify-center px-4 py-10">
+      <div className="glass-card w-full max-w-md p-6 sm:p-8">
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-bold tracking-tight">
+            {isLoginForm ? "Welcome back" : "Create account"}
+          </h1>
+          <p className="mt-1 text-sm text-base-content/60">
+            {isLoginForm
+              ? "Sign in to find your next dev connection"
+              : "Join the developer community"}
+          </p>
+        </div>
 
-        <label className="label text-white">Email</label>
-        <input
-          type="email"
-          className="input"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <fieldset className="fieldset gap-1">
+          {!isLoginForm && (
+            <>
+              <label className="label pt-2">First Name</label>
+              <input
+                type="email"
+                className="input input-bordered w-full"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <label className="label pt-2">Last Name</label>
+              <input
+                type="email"
+                className="input input-bordered w-full"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </>
+          )}
 
-        <label className="label text-white">Password</label>
-        <input
-          type="password"
-          className="input"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && (
-          <p className="text-red-600 bg-gray-800 rounded-lg p-2">{error}</p>
-        )}
-        <button
-          className="btn btn-neutral mt-4"
-          onClick={isLoginForm ? handleLogin : handleSignUp}
-        >
-          {isLoginForm ? "Login" : "Sign Up"}
-        </button>
-        <p
-          className="text-center mt-3 cursor-pointer hover:text-gray-200"
-          onClick={() => setIsLoginForm(!isLoginForm)}
-        >
-          {isLoginForm ? "New User? sign up now" : "Already user? Login now"}
-        </p>
-      </fieldset>
+          <label className="label pt-2">Email</label>
+          <input
+            type="email"
+            className="input input-bordered w-full"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className="label pt-2">Password</label>
+          <input
+            type="password"
+            className="input input-bordered w-full"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {error && (
+            <div className="alert alert-error mt-4 py-2 text-sm">
+              <span>{error}</span>
+            </div>
+          )}
+
+          <button
+            className="btn btn-primary mt-6 w-full"
+            onClick={isLoginForm ? handleLogin : handleSignUp}
+          >
+            {isLoginForm ? "Sign In" : "Create Account"}
+          </button>
+
+          <p
+            className="mt-4 cursor-pointer text-center text-sm text-base-content/60 transition-colors hover:text-primary"
+            onClick={() => setIsLoginForm(!isLoginForm)}
+          >
+            {isLoginForm
+              ? "New user? Sign up now"
+              : "Already have an account? Sign in"}
+          </p>
+        </fieldset>
+      </div>
     </div>
   );
 };
