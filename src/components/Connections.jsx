@@ -15,7 +15,7 @@ const Connections = () => {
   };
   useEffect(() => {
     fetchConnections();
-  });
+  }, []);
   if (!connections || connections.length == 0) {
     return (
       <div className="text-center text-xl my-3 text-gray-400">

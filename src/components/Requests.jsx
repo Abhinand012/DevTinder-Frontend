@@ -36,7 +36,7 @@ const Requests = () => {
   }
   return (
     requests && (
-      <div className="flex flex-col items-center gap-4 mt-4">
+      <div className="self-start flex flex-col items-center gap-4 mt-4">
         {requests.map((request) => {
           const { _id, firstName, lastName, photoUrl, age, gender, about } =
             request.fromUserId;
